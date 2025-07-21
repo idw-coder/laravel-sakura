@@ -66,9 +66,14 @@ Run the "diagnose" command to get more detailed diagnostics output.
 
 ```
 
-docs\wsl-git-setup.mdを参考にgit clone
+## docs\wsl-git-setup.mdを参考にgit clone
 
 
+## npm run buildはローカルですませて、その内容をgit pullしておく必要があるよ
+.gitignoreは下記でね
+```
+# /public/build
+```
 
 ## Composerで依存関係をインストール
 
