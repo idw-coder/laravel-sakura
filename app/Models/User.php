@@ -96,4 +96,14 @@ class User extends Authenticatable
     {
         return $this->qualification && $this->qualification->isAssistant();
     }
+
+    /**
+     * 認証IDの名前を返す
+     * getAuthIdentifierName() は、「どのカラムでユーザーを検索するか」をLaravelに教えるためのメソッド。
+     * Auth::attempt() の裏で呼ばれてる。
+     */
+    public function getAuthIdentifierName(): string
+    {
+        return 'admin_id';
+    }
 }
