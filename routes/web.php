@@ -17,7 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    // ユーザー管理
+    Route::resource('users', UserController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'admin_id',
         'qualification_id',
         'role_id',
+        'memo',
     ];
 
     /**

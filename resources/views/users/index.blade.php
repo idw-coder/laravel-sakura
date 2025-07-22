@@ -11,10 +11,13 @@
                 <div class="p-6 text-gray-900">
 
                     <!-- ユーザー数表示 -->
-                    <div class="mb-6">
+                    <div class="mb-6 flex justify-between items-center">
                         <p class="text-sm text-gray-600">
                             全 {{ $users->count() }} 名のユーザー
                         </p>
+                        <a href="{{ route('users.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            新規ユーザー作成
+                        </a>
                     </div>
 
                     <!-- ユーザー一覧テーブル -->
@@ -29,6 +32,7 @@
                                     <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">資格</th>
                                     <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">役割</th>
                                     <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">登録日</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">操作</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
@@ -62,6 +66,26 @@
                                     </td>
                                     <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">
                                         {{ $user->created_at->format('Y-m-d H:i') }}
+                                    </td>
+                                    <td class="border border-gray-300 px-4 py-2 text-sm">
+                                        <div class="flex space-x-2">
+                                            <!-- 詳細ボタン -->
+                                            <a href="{{ route('users.show', $user) }}" class="inline-flex items-center px-2 py-1 bg-gray-600 border border-transparent rounded text-xs text-white hover:bg-gray-700">
+                                                詳細
+                                            </a>
+                                            <!-- 編集ボタン -->
+                                            <a href="{{ route('users.edit', $user) }}" class="inline-flex items-center px-2 py-1 bg-blue-600 border border-transparent rounded text-xs text-white hover:bg-blue-700">
+                                                編集
+                                            </a>
+                                            <!-- 削除ボタン -->
+                                            <form method="POST" action="{{ route('users.destroy', $user) }}" class="inline" onsubmit="return confirm('本当に削除しますか？')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="inline-flex items-center px-2 py-1 bg-red-600 border border-transparent rounded text-xs text-white hover:bg-red-700">
+                                                    削除
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
